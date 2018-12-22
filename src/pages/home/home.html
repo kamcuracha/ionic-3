@@ -7,6 +7,15 @@
 </ion-header>
 
 <ion-content padding>
-  Hello World!
-  <button ion-button round (click)="buttonClick()">Primary round</button>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" floating>Label</ion-label>
+      <ion-input [(ngModel)]="inputVal" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea placeholder="Text" rows="10"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <button ion-button round (click)="buttonClick()">Button</button>
 </ion-content>
