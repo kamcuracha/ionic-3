@@ -34,6 +34,7 @@ export class HomePage {
       this.isLoading = false;
     },
     err => {
+      this.isGettingPosts = false;
       alert('Oops:' + err.message);
     });
   }
