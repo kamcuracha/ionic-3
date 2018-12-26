@@ -14,8 +14,8 @@
           <ion-card-header>
             {{ item.title }}
           </ion-card-header>
-          <ion-card-content class="ion-card-content--height">
-            {{ item.body }}
+          <ion-card-content>
+            <div [innerHTML]="item.body | ellipser: { clength: contentLength }"></div>
           </ion-card-content>
         </ion-card>
       </ion-col>

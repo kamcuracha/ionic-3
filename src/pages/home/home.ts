@@ -11,6 +11,7 @@ export class HomePage {
 
   data: Observable<any>;
   items: any;
+  public contentLength: number = 180;
 
   constructor(public navCtrl: NavController,
     public http: HttpClient) {
