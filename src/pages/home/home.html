@@ -6,9 +6,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content style="background: #000;">
+  <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <img src="https://placebear.com/500/600" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="https://placebear.com/600/400" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="https://placebear.com/700/900" alt="">
+    </ion-slide>
+  </ion-slides>
 </ion-content>
