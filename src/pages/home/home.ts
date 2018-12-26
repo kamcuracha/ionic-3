@@ -7,8 +7,14 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  isSearchBar: boolean = false;
+
   constructor(public navCtrl: NavController) {
 
+  }
+
+  onSearch(e: any) {
+    console.log(e.target.value);
   }
 
 }
