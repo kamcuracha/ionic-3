@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -9,11 +11,13 @@ import { Storage } from '@ionic/storage';
 export class HomePage {
 
   splash: boolean = true;
-  inputText: string;
-  key: string = 'inputValue';
+  key: string = 'items';
+  url: string = 'https://jsonplaceholder.typicode.com/posts';
+  items: any = [];
 
   constructor(public navCtrl: NavController,
-    private storage: Storage) {
+    private storage: Storage,
+    public http: HttpClient) {
 
   }
 
@@ -21,14 +25,25 @@ export class HomePage {
     setTimeout(() => this.splash = false, 4000);
   }
 
-  saveData(e: any) {
-    this.storage.set(this.key, this.inputText);
-    alert('Input saved!');
+  getPosts() {
+    let data: Observable<any>;
+    data = this.http.get(this.url);
+    data.subscribe( res => {
+      this.items = res;
+    });
   }
 
-  loadData(e: any) {
+  saveData() {
+    this.storage.set(this.key, JSON.stringify(this.items));
+    alert('Items saved!');
+  }
+
+  loadData() {
     this.storage.get(this.key).then((val) => {
-      alert('The input is: ' + val);
+      if(val != null && val != undefined) {
+        this.items = JSON.parse(val);
+        alert('The items are: ' + val);
+      }
     });
   }
 

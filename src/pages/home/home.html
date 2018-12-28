@@ -15,10 +15,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-input [(ngModel)]="inputText" placeholder="Input something"></ion-input>
-  </ion-item>
+  <button ion-button full color="dark" (click)="getPosts()">Get Posts</button>
+  <button ion-button full (click)="saveData()">Save</button>
+  <button ion-button full color="light" (click)="loadData()">Load</button>
 
-  <button ion-button full (click)="saveData($event)">Save</button>
-  <button ion-button full color="light" (click)="loadData($event)">Load</button>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{ item.title }}
+    </ion-item>
+  </ion-list>
 </ion-content>
