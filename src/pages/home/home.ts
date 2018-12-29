@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-home',
@@ -10,9 +12,13 @@ export class HomePage {
 
   splash: boolean = true;
   base64Image: string;
+  url: string;
+  postDataLoad: any;
+  data: Observable<any>;
 
   constructor(public navCtrl: NavController,
-    private camera: Camera) {
+    private camera: Camera,
+    public http: HttpClient) {
 
   }
 
@@ -53,6 +59,18 @@ export class HomePage {
      this.base64Image = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
      // Handle error
+    });
+  }
+
+  uploadPicture() {
+    this.url = "https://reqres.in/api/users";
+    // FILE WONT WORK WITH BASE64IMG, USE FILE_URI
+    this.postDataLoad = {
+      "file": this.base64Image
+    }
+    this.data = this.http.post(this.url, this.postDataLoad);
+    this.data.subscribe( res => {
+      console.log(res);
     });
   }
 
