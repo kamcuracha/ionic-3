@@ -18,7 +18,8 @@
   <button ion-button full (click)="loginGoogle()">Google Login</button>
 
   <span>
-    <h5>Name: {{ user.displayName }}</h5>
+    <h5>Name: {{ user.name }}</h5>
     <p>Email: {{ user.email }}</p>
+    <img [src]="user.image" alt="">
   </span>
 </ion-content>
