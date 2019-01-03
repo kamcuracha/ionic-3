@@ -15,8 +15,12 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-input [(ngModel)]="inputText" placeholder="Item name"></ion-input>
+  <button ion-button full (click)="addItem({name: inputText})">Add Item</button>
+
+  <ion-list *ngIf="items">
+    <ion-item *ngFor="let item of items" (click)="deleteItem(item.key)">
+      {{ item.name }}
+    </ion-item>
+  </ion-list>
 </ion-content>
