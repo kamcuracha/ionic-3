@@ -15,11 +15,11 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-input [(ngModel)]="inputText" placeholder="Item name"></ion-input>
+  <ion-input [(ngModel)]="inputText" placeholder="Input name"></ion-input>
   <button ion-button full (click)="addItem({name: inputText})">Add Item</button>
 
   <ion-list *ngIf="items">
-    <ion-item *ngFor="let item of items" (click)="deleteItem(item.key)">
+    <ion-item *ngFor="let item of items" (click)="editItem(item.key)">
       {{ item.name }}
     </ion-item>
   </ion-list>

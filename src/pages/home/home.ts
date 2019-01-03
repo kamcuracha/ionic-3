@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import * as firebase from 'firebase';
 
 @Component({
@@ -14,7 +14,8 @@ export class HomePage {
 
   splash: boolean = true;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+    private alertCtrl: AlertController) {
     this.ref.on('value', res => {
       this.items = this.snapshotToArray(res);
     });
@@ -30,6 +31,33 @@ export class HomePage {
       newItem.set(item);
       this.inputText = '';
     }
+  }
+
+  editItem(key) {
+    let alert = this.alertCtrl.create({
+      title: 'Edit name',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Input name'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            if(data !== undefined && data !== null && data.name) {
+              firebase.database().ref('items/' + key).update({name: data.name});
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   deleteItem(key) {
