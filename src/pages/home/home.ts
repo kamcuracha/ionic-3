@@ -7,8 +7,12 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  items: any = [];
 
+  constructor(public navCtrl: NavController) {
+    for (var i = 0; i < 100; i++) {
+      this.items.push(i);
+    } 
   }
 
 }
