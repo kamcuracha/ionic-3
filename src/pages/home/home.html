@@ -17,5 +17,9 @@
 <ion-content padding>
   <button ion-button full (click)="loginFacebook()">Facebook Login</button>
 
-  <img [src]="user.img" alt="">
+  <ion-item *ngIf="objectKeys(user).length">
+    <img [src]="user.img" alt="">
+    <h5>Name: {{ user.fname }} {{ user.lname }}</h5>
+    <p>Email: {{ user.email }}</p>
+  </ion-item>
 </ion-content>
